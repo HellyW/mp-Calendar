@@ -1,0 +1,53 @@
+<!--components/calendar.wxml-->
+<!-- 本期日历只实现显示当前月    不在同一月显示上一月和下一月 -->
+<view class="half-screen-dialog">
+  <view class="calendar fadeInUp"
+    bindtouchstart="touchStartEvent"
+    bindtouchend="touchEndEvent"
+    >
+      <!-- 顶部说明及完成选项 -->
+      <view class="header">
+        <view class="placeholder">{{placeholder}}</view>
+        <view class="confirm-btn" bindtap="confirmEvent">确认</view>
+      </view>
+      <!-- 日历展示主体 -->
+      <view class="body">
+        <!-- 顶部工具栏 -->
+        <view wx:if="{{range}}" class="calendar-tools">
+          <view class="tool tools-week" bindtap="setThisWeek">本周内</view>
+          <view class="tool tools-month" bindtap="setThisMonth">本月内</view>
+        </view>
+        <!-- 日历格子主体 -->
+        <view class="calendar-body {{fadeInLeft?'fadeInLeft':''}} {{fadeInRight?'fadeInRight':''}}">
+          <!-- 星期格子 -->
+          <view class="week-days calendar-line">
+            <view class="week-day calendar-item" wx:for="{{weeks}}" wx:for-item="week" wx:for-index="weekIndex" wx:key="weekIndex">{{week}}</view>
+          </view>
+          <!-- 当前月份信息 -->
+          <view class="month-board">{{previewYear}}年{{previewMonth+1}}月</view>
+          <!-- 每日表格 -->
+          <view
+            class="month-days calendar-line"
+            wx:for="{{days.length/7}}"
+            wx:for-item="line"
+            wx:for-index="lineIndex"
+            wx:key="lineIndex"
+            >
+            <view
+              class="month-day calendar-item {{days[lineIndex*7+dayIndex].start?'active start':''}} {{days[lineIndex*7+dayIndex].end?'active end':''}} {{days[lineIndex*7+dayIndex].start?'active start':''}} {{days[lineIndex*7+dayIndex].between?'between':''}} {{previewYear===currentYear&&previewMonth===currentMonth&&currentDay===days[lineIndex*7+dayIndex].day? 'today':''}}"
+              wx:for="{{7}}"
+              wx:for-item="day"
+              wx:for-index="dayIndex"
+              wx:key="dayIndex"
+              data-year="{{previewYear}}"
+              data-month="{{previewMonth}}"
+              data-day="{{days[lineIndex*7+dayIndex].day===0?'':days[lineIndex*7+dayIndex].day}}"
+              bindtap="tapDayEvent"
+            >
+              {{days[lineIndex*7+dayIndex].day===0?" ":(previewYear===currentYear&&previewMonth===currentMonth&&currentDay===days[lineIndex*7+dayIndex].day?'今日':days[lineIndex*7+dayIndex].day)}}
+            </view>
+          </view>
+        </view>
+      </view>
+  </view>
+</view>

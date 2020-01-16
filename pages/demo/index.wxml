@@ -1,0 +1,6 @@
+<!--pages/demo/index.wxml-->
+<view class="full-container">
+  <view>{{time}}</view>
+  <button bindtap="chooseDate">选择日期</button>
+  <calendar wx:if="{{showDialog}}" value="{{time}}" range bindconfirm="confirmDate"></calendar>
+</view>

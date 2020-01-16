@@ -1,0 +1,258 @@
+/* components/calendar.wxss */
+.half-screen-dialog{
+  position: fixed;
+  background: rgba(0, 0, 0, .5);
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.half-screen-dialog .calendar{
+  width: 100vw;
+  min-height: 300rpx;
+  box-sizing: border-box;
+  padding: 40rpx 40rpx 0 40rpx;
+  background: #FFF;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+}
+
+/* 顶部样式 */
+.half-screen-dialog .calendar .header{
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  padding: 10rpx 0;
+}
+
+.calendar .header .placeholder{
+  width: 100%;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: 4rpx;
+}
+
+.calendar .header .confirm-btn{
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 9;
+  color: #072761;
+  font-size: 30rpx;
+  font-weight: 800;
+  padding: 10rpx 20rpx;
+  letter-spacing: 6rpx;
+}
+
+/* 日历主体 */
+
+.calendar .body{
+  padding: 50rpx 0;
+}
+
+/* 日历顶部工具栏 */
+
+.calendar .body .calendar-tools{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 10rpx;
+  display: flex;
+  display: -webkit-flex;
+}
+
+.calendar .body .calendar-tools .tool{
+  flex: 1;
+  background: #EFEDF0;
+  margin: 0 30rpx;
+  text-align: center;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #000000;
+  border-radius: 10rpx;
+  font-size: 26rpx;
+  font-weight: 300;
+}
+
+/* 日历显示格子主体 */
+.calendar .body .calendar-body{
+  padding: 20rpx 0;
+}
+/* 通用样式 */
+.calendar .body .calendar-body .calendar-line{
+  width: 100%;
+  display: flex;
+  display: -webkit-flex;
+}
+.calendar .body .calendar-body .calendar-item{
+  flex: 1;
+  text-align: center;
+  border-radius: 10rpx;
+}
+
+.calendar .body .calendar-body .calendar-item.active{
+  background: #072761;
+  color: #FFF;
+}
+
+.calendar .body .calendar-body .calendar-item.today{
+  color: #D18639;
+}
+.calendar .body .calendar-body .calendar-item.between{
+  background: #F6F6F8;
+  border-radius: 0;
+}
+
+/* 星期格子 */
+.calendar .body .calendar-body .week-days{
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #E4E4E4;
+}
+
+.calendar .body .calendar-body .week-day{
+  font-size: 26rpx;
+}
+
+.calendar .body .calendar-body .week-day:first-child,
+.calendar .body .calendar-body .week-day:last-child{
+  color: #072761;
+}
+
+/* 当前月份看板信息 */
+.calendar .body .calendar-body .month-board{
+  font-size: 26rpx;
+  padding: 0 30rpx;
+  color: #2C2B2F;
+  margin: 20rpx auto;
+}
+
+/* 每日表格 */
+.calendar .body .calendar-body .month-days{
+  
+}
+
+.calendar .body .calendar-body .month-day{
+  font-size: 26rpx;
+  font-weight: 800;
+  padding: 20rpx 0;
+}
+
+@-webkit-keyframes fadeInUp {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInUp {
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
+}
+
+
+@-webkit-keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInLeft {
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: fadeInLeft;
+  animation-name: fadeInLeft;
+}
+
+@-webkit-keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInRight {
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: fadeInRight;
+  animation-name: fadeInRight;
+}
