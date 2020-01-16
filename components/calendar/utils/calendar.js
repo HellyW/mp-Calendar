@@ -24,6 +24,7 @@ export class Calendar {
     return [this.getDisDate((day || this.day) - MONTH), this.getDisDate(MONTH - (day || this.day))]
   }
   dateFormat(fmt, date = new Date(this.year, this.month, this.day)) {
+    date = new Date(date)
     let ret;
     const opt = {
       "Y+": date.getFullYear().toString(), // 年
