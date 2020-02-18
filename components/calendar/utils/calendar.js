@@ -1,27 +1,31 @@
+function isValidDate(date) {
+  return date instanceof Date && !isNaN(date.getTime())
+}
+
 export class Calendar {
   constructor(year, month, day) {
-    const currentDate = new Date()
-    this.year = year || currentDate.getFullYear()
-    this.month = month || currentDate.getMonth()
-    this.day = day || currentDate.getDate()
+    const currentDate = isValidDate(new Date(year, month, day)) ? new Date(year, month, day) : new Date()
+    this.year = currentDate.getFullYear()
+    this.month = currentDate.getMonth()
+    this.day = currentDate.getDate()
   }
-  getMonthDays(year, month) {
+  getMonthDays() {
     // 获取本月的天数
-    return (new Date(year || this.year, (month || this.month)+1, 0)).getDate()
+    return (new Date(this.year, this.month + 1, 0)).getDate()
   }
-  getDayWeek(year, month, day) {
-    return (new Date(year || this.year, month || this.month, day || this.day)).getDay()
+  getDayWeek() {
+    return (new Date(this.year, this.month, this.day)).getDay()
   }
-  getDisDate(dis, year, month, day) {
+  getDisDate(dis) {
     return new Date(new Date().getTime() + dis * 24 * 60 * 60 * 1000)
   }
-  getThisWeek(year, month, day) {
-    const WEEK = this.getDayWeek(year||this.year, month||this.month, day||this.day)
+  getThisWeek() {
+    const WEEK = this.getDayWeek()
     return [this.getDisDate(0 - WEEK), this.getDisDate(6 - WEEK)]
   }
-  getThisMonth(year, month, day) {
-    const DAYS = this.getMonthDays(year||this.year, month || this.month)
-    return [this.getDisDate(0 - (day || this.day) + 1), this.getDisDate(DAYS - (day || this.day))]
+  getThisMonth() {
+    const DAYS = this.getMonthDays()
+    return [this.getDisDate(0 - this.day + 1), this.getDisDate(DAYS - this.day)]
   }
   dateFormat(fmt, date = new Date(this.year, this.month, this.day)) {
     date = new Date(date)

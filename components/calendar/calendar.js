@@ -76,8 +76,8 @@ Component({
       // 更新当前显示日历年月信息
       this.setPreviewCalendar(year,month)
       // 本月天数
-      const DAYS = this.calendar.getMonthDays(this.data.previewYear,this.data.previewMonth)
-      const WEEK = this.calendar.getDayWeek(this.data.previewYear,this.data.previewMonth,1)
+      const DAYS = this.calendar.getMonthDays()
+      const WEEK = this.calendar.getDayWeek()
       let _days = []
       for(let i = 0 ; i < DAYS + WEEK; i++) _days.push({
         day: i < WEEK ? 0 : i - WEEK + 1,
@@ -92,6 +92,7 @@ Component({
     setPreviewCalendar(year,month){
       // 设置当前显示的月份信息
       let self = this
+      this.calendar = new Calendar(year,month,1)
       this.setData({
         previewYear: year,
         previewMonth: month
@@ -125,10 +126,8 @@ Component({
       if(touchPosition[1].pageX - touchPosition[0].pageX > 30){
         // 向右滑   执行 月份 - 
         console.log('right')
-        console.log(this.data.previewYear,this.data.previewMonth)
         this.data.previewYear = this.data.previewMonth === 0 ? this.data.previewYear - 1 : this.data.previewYear
         this.data.previewMonth = this.data.previewMonth === 0 ? 11 : this.data.previewMonth - 1 
-        console.log(this.data.previewYear,this.data.previewMonth)
         this.setData({
           fadeInLeft: true,
           fadeInRight: false
