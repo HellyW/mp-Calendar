@@ -178,6 +178,7 @@ Component({
     setThisWeek(){
       if(!this.data.range) return
       let self = this
+      this.calendar = new Calendar(this.currentYear,this.currentMonth,this.currentDay)
       this.setData({
         time: self.calendar.getThisWeek()
       })
@@ -186,6 +187,7 @@ Component({
     setThisMonth(){
       if(!this.data.range) return
       let self = this
+      this.calendar = new Calendar(this.currentYear,this.currentMonth,this.currentDay)
       this.setData({
         time:self.calendar.getThisMonth()
       })
