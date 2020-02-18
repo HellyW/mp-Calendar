@@ -7,7 +7,7 @@ export class Calendar {
   }
   getMonthDays(year, month) {
     // 获取本月的天数
-    return (new Date(year || this.year, month || this.month, 0)).getDate()
+    return (new Date(year || this.year, (month || this.month)+1, 0)).getDate()
   }
   getDayWeek(year, month, day) {
     return (new Date(year || this.year, month || this.month, day || this.day)).getDay()
@@ -16,12 +16,12 @@ export class Calendar {
     return new Date(new Date().getTime() + dis * 24 * 60 * 60 * 1000)
   }
   getThisWeek(year, month, day) {
-    const WEEK = this.getDayWeek(year, month, day)
-    return [this.getDisDate(WEEK - 7 - 1), this.getDisDate(7 - WEEK - 1)]
+    const WEEK = this.getDayWeek(year||this.year, month||this.month, day||this.day)
+    return [this.getDisDate(0 - WEEK), this.getDisDate(6 - WEEK)]
   }
   getThisMonth(year, month, day) {
-    const MONTH = this.getMonthDays(year, month)
-    return [this.getDisDate((day || this.day) - MONTH), this.getDisDate(MONTH - (day || this.day))]
+    const DAYS = this.getMonthDays(year||this.year, month || this.month)
+    return [this.getDisDate(0 - (day || this.day) + 1), this.getDisDate(DAYS - (day || this.day))]
   }
   dateFormat(fmt, date = new Date(this.year, this.month, this.day)) {
     date = new Date(date)

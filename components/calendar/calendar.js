@@ -93,8 +93,8 @@ Component({
       // 设置当前显示的月份信息
       let self = this
       this.setData({
-        previewYear: year || self.data.currentYear,
-        previewMonth: month || self.data.currentMonth
+        previewYear: year,
+        previewMonth: month
       })
     },
     initCalendar(){
@@ -124,8 +124,11 @@ Component({
       // 只判断横向   即左滑还是右滑
       if(touchPosition[1].pageX - touchPosition[0].pageX > 30){
         // 向右滑   执行 月份 - 
+        console.log('right')
+        console.log(this.data.previewYear,this.data.previewMonth)
         this.data.previewYear = this.data.previewMonth === 0 ? this.data.previewYear - 1 : this.data.previewYear
         this.data.previewMonth = this.data.previewMonth === 0 ? 11 : this.data.previewMonth - 1 
+        console.log(this.data.previewYear,this.data.previewMonth)
         this.setData({
           fadeInLeft: true,
           fadeInRight: false
@@ -133,6 +136,7 @@ Component({
         this.refreshCalendarDay(this.data.previewYear,this.data.previewMonth)
       }else if(touchPosition[0].pageX - touchPosition[1].pageX > 30){
         // 向左滑   执行 月份 +
+        console.log('left')
         this.data.previewYear = this.data.previewMonth === 11 ? this.data.previewYear + 1 : this.data.previewYear
         this.data.previewMonth = this.data.previewMonth === 11 ? 0 : this.data.previewMonth + 1 
         this.setData({
